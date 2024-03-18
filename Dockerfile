@@ -1,10 +1,10 @@
-FROM perl:latest
-MAINTAINER Simon <simon@qic.ca>
+FROM ubuntu:latest
+LABEL Maintainer="Simon <simon@qic.ca>""
 
 RUN mkdir -p /home/backup
 WORKDIR /work
 
-RUN apt update && apt upgrade -y && apt install -y tar wget cron curl nano && apt clean
+RUN apt update && apt install -y tar wget cron curl nano perl cpanminus && apt clean
 
 # Timezone (no prompt)
 ARG TZ "America/Toronto"
