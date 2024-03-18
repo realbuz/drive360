@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-LABEL Maintainer="Simon <simon@qic.ca>""
+LABEL Maintainer="Simon <simon@qic.ca>"
 
 RUN mkdir -p /home/backup
 WORKDIR /work
