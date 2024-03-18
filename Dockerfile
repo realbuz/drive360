@@ -1,6 +1,9 @@
 FROM ubuntu:latest
 LABEL Maintainer="Simon <simon@qic.ca>"
 
+ARG download_url
+ARG debfilename
+
 RUN mkdir -p /home/backup
 WORKDIR /work
 
@@ -18,9 +21,8 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 RUN rm -rf /var/lib/apt/lists/*
 
 # Install IDrive
-# change the url and filename and uncomment
-#RUN curl -O wget -O IDrive360_putyourown_private.deb https://webapp.idrive360.com/api/v1/download/setup/deb/putyourown?encryption=true
-#RUN dpkg -i IDrive360_putyourown_private.deb
-#RUN rm filename.deb
+RUN curl -O wget -O $debfilename $download_url
+RUN dpkg -i $debfilename
+RUN rm $debfilename
 
 RUN touch /var/log/idrive.log

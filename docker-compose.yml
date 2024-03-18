@@ -1,0 +1,20 @@
+name: 'idrive360-private'
+
+volumes:
+  hostpath:
+
+services:
+  idrive:
+    restart: unless-stopped
+    image: realbuz/drive360:latest
+    environment:
+     - "DOWNLOAD_URL=https://webapp.idrive360.com/api/v1/download/setup/deb/REXNXV29697?encryption=true"
+     - "debfilename=IDrive360_REXNXV29697_private.deb"
+
+    # Mount init.sql file to automatically run 
+    # and create tables for us.
+    # everything in docker-entrypoint-initdb.d folder
+    # is executed as soon as container is up nd running.
+    volumes:
+     - hostpath:/opt
+    
